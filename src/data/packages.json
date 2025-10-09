@@ -1,0 +1,5 @@
+[
+  {"id":1002,"name":"วัสดุก่อสร้าง","code":"-","price":12000.00000,"durationDay":30,"active":true,"createdAt":"2025-10-04T06:15:34.554Z","updatedAt":"2025-10-04T06:17:12.885Z","createdBy":"PRATYA PHOCHA","updatedBy":"PRATYA PHOCHA","codeType":"basic"},
+  {"id":1004,"name":"ขายเหล็ก","code":"ข","price":18000.00000,"durationDay":365,"active":true,"createdAt":"2025-10-04T10:10:31.575Z","updatedAt":"2025-10-04T10:10:31.575Z","createdBy":"PRATYA PHOCHA","updatedBy":"PRATYA PHOCHA","codeType":"steel"},
+  {"id":1005,"name":"เมทัลชีท","code":"-","price":25000.00000,"durationDay":30,"active":true,"createdAt":"2025-10-04T10:13:31.168Z","updatedAt":"2025-10-04T10:13:31.168Z","createdBy":"PRATYA PHOCHA","updatedBy":"PRATYA PHOCHA","codeType":"full"}
+]

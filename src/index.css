@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7fdf8; /* very light green */
+  --card: #ffffff;
+  --muted: #6b7280;
+  --primary: #16a34a; /* green-600 */
+  --primary-600: #15803d; /* green-700 */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg), #f0fff4);
+  color: #0f172a; /* slate-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: white;
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(16, 185, 129, 0.14);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary-600);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Icons: ensure inline SVGs inherit color and have consistent sizing */
+.icon,
+svg.icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  flex: 0 0 16px;
+}
+
+/* Ensure stroke/fill use currentColor unless explicitly set */
+svg.icon {
+  color: inherit;
+}
+svg.icon [stroke="currentColor"] {
+  stroke: currentColor;
+}
+svg.icon [fill="currentColor"] {
+  fill: currentColor;
+}
+
+.toolbar {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.5)
+  );
+  border-radius: 12px;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+}
+
+.search {
+  background: #f1fdf6;
+  border: 1px solid rgba(16, 185, 129, 0.08);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+/* Small helpers */
+.muted {
+  color: var(--muted);
+}
+
+/* Stronger icon fallbacks: ensure strokes use currentColor and visible sizes */
+svg.icon path,
+svg.icon rect,
+svg.icon circle,
+svg.icon line,
+svg.icon polyline,
+svg.icon polygon {
+  stroke: currentColor !important;
+}
+
+/* If an element has a fill other than 'none', make it inherit currentColor */
+svg.icon [fill]:not([fill="none"]) {
+  fill: currentColor !important;
+}
+
+/* Ensure inline svg keeps size even if CSS reset applies */
+svg.icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
