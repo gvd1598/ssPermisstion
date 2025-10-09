@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import CrudList from "./CrudList";
 import PackageFeatureMapper from "./PackageFeatureMapper";
 import type { PackageFeatureMap } from "./PackageFeatureMapper";
@@ -139,27 +145,16 @@ const PackageFeatureAdmin: React.FC = () => {
     []
   );
 
-  const exportAll = () => {
-    const out = {
-      packages,
-      features,
-      mapping: toPersist(mapping),
-    };
-    const blob = new Blob([JSON.stringify(out, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "full-package-feature-config.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  // JSON export removed; CSV-only behavior
 
   const exportCSV = () => {
-    // columns: package_id,package_name,feature_id,feature_name,feature_code
+    // columns: package_id,package_name,feature_id,feature_name,createdAt,updatedAt,createdBy,updatedBy
+    // createdAt/updatedAt are mapping-level timestamps (epoch ms), createdBy/updatedBy set to "system"
     const rows: string[] = [];
-    rows.push("package_id,package_name,feature_id,feature_name,feature_code");
+    rows.push(
+      "package_id,package_name,feature_id,feature_name,createdAt,updatedAt,createdBy,updatedBy"
+    );
+    const now = String(Date.now()); // epoch ms
     Object.entries(toPersist(mapping)).forEach(([pkgId, featIds]) => {
       const pkg = packages.find((p) => String(p.id) === pkgId);
       featIds.forEach((fid) => {
@@ -169,7 +164,10 @@ const PackageFeatureAdmin: React.FC = () => {
           pkg?.name ?? "",
           fid,
           feat?.name ?? "",
-          feat?.code ?? "",
+          now,
+          now,
+          "system",
+          "system",
         ];
         // escape commas and quotes
         const esc = cols
@@ -188,21 +186,173 @@ const PackageFeatureAdmin: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
-  const copyAll = async () => {
-    try {
-      const out = {
-        packages,
-        features,
-        mapping: toPersist(mapping),
-      };
-      await navigator.clipboard.writeText(JSON.stringify(out, null, 2));
-      // lightweight feedback
-      alert("Configuration copied to clipboard");
-    } catch (e) {
-      console.warn("copy failed", e);
-      alert("Copy failed — please use Export JSON");
-    }
+  // --- CSV load / import ---
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  function parseCSV(text: string): Record<string, string>[] {
+    // simple RFC4180-ish parser returning array of row objects keyed by header
+    const lines = text.split(/\r?\n/);
+    // drop empty lines
+    const filtered = lines.filter((l) => l.trim() !== "");
+    if (filtered.length === 0) return [];
+
+    const parseLine = (line: string) => {
+      const cells: string[] = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === "," && !inQuotes) {
+          cells.push(cur);
+          cur = "";
+        } else {
+          cur += ch;
+        }
+      }
+      cells.push(cur);
+      return cells.map((c) => c.trim());
+    };
+
+    const headers = parseLine(filtered[0]).map((h) => h.trim());
+    return filtered.slice(1).map((ln) => {
+      const cells = parseLine(ln);
+      const obj: Record<string, string> = {};
+      headers.forEach((h, i) => (obj[h] = cells[i] ?? ""));
+      return obj;
+    });
+  }
+
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const text = String(reader.result ?? "");
+        const parsed = parseCSV(text);
+        if (!parsed.length) {
+          alert("No rows found in CSV");
+          return;
+        }
+
+        // Build lookup maps from current state (mutable)
+        const pkgMap = new Map<string, PackageEntity>(
+          packages.map((p) => [String(p.id), p])
+        );
+        const featMap = new Map<string, FeatureEntity | FeatureEntity>(
+          features.map((f) => [String(f.id), f])
+        );
+        const newPersist: Record<string, string[]> = {};
+
+        parsed.forEach((row) => {
+          // normalize keys
+          const normRow: Record<string, string> = {};
+          Object.entries(row).forEach(([k, v]) => {
+            normRow[normalize(k)] = v;
+          });
+
+          const pkgIdRaw = normRow["packageid"] ?? normRow["package_id"] ?? "";
+          const pkgId = String(pkgIdRaw).trim();
+          if (!pkgId) return;
+
+          const pkgName = normRow["packagename"] ?? "";
+          const pkgCreatedAt = normRow["packagecreatedat"] ?? "";
+          const pkgUpdatedAt = normRow["packageupdatedat"] ?? "";
+
+          const featIdRaw = normRow["featureid"] ?? normRow["feature_id"] ?? "";
+          const featId = String(featIdRaw).trim();
+          if (!featId) return;
+
+          const featName = normRow["featurename"] ?? "";
+          const featCode = normRow["featurecode"] ?? "";
+          const featCreatedAt = normRow["featurecreatedat"] ?? "";
+          const featUpdatedAt = normRow["featureupdatedat"] ?? "";
+
+          // upsert package
+          if (!pkgMap.has(pkgId)) {
+            const idNum = Number(pkgId);
+            const created = createEmptyPackage(
+              isNaN(idNum) ? nextIdFor(packages) : idNum
+            );
+            const newPkg: PackageEntity = {
+              ...created,
+              id: isNaN(idNum) ? created.id : idNum,
+              name: pkgName || created.name,
+              createdAt: pkgCreatedAt || created.createdAt,
+              updatedAt: pkgUpdatedAt || created.updatedAt,
+              code: created.code,
+            };
+            pkgMap.set(String(newPkg.id), newPkg);
+          } else {
+            const existing = pkgMap.get(pkgId)!;
+            if (pkgName) existing.name = pkgName;
+            if (pkgCreatedAt) existing.createdAt = pkgCreatedAt;
+            if (pkgUpdatedAt) existing.updatedAt = pkgUpdatedAt;
+            pkgMap.set(pkgId, existing);
+          }
+
+          // upsert feature
+          if (!featMap.has(featId)) {
+            const idNum = Number(featId);
+            const created = createEmptyFeature(
+              isNaN(idNum) ? nextIdFor(features) : idNum
+            );
+            const newFeat: FeatureEntity = {
+              ...created,
+              id: isNaN(idNum) ? created.id : idNum,
+              name: featName || created.name,
+              code: featCode || created.code,
+              createdAt: featCreatedAt || created.createdAt,
+              updatedAt: featUpdatedAt || created.updatedAt,
+            };
+            featMap.set(String(newFeat.id), newFeat);
+          } else {
+            const existing = featMap.get(featId)! as FeatureEntity;
+            if (featName) existing.name = featName;
+            if (featCode) existing.code = featCode;
+            if (featCreatedAt) existing.createdAt = featCreatedAt;
+            if (featUpdatedAt) existing.updatedAt = featUpdatedAt;
+            featMap.set(featId, existing);
+          }
+
+          // mapping
+          newPersist[pkgId] ??= [];
+          if (!newPersist[pkgId].includes(featId))
+            newPersist[pkgId].push(featId);
+        });
+
+        // Replace state
+        setPackages(Array.from(pkgMap.values()).sort((a, b) => a.id - b.id));
+        setFeatures(Array.from(featMap.values()).sort((a, b) => a.id - b.id));
+        setMapping(fromPersist(newPersist));
+        alert(
+          `Loaded ${Object.keys(newPersist).length} package mappings from CSV`
+        );
+      } catch (err) {
+        console.error(err);
+        alert("Failed to parse CSV file");
+      } finally {
+        // reset input so same file can be re-selected
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      }
+    };
+    reader.readAsText(f, "utf-8");
   };
+
+  // helper to generate a nextId when CSV contains non-numeric id
+  const nextIdFor = (arr: { id: number }[]) =>
+    arr.length ? Math.max(...arr.map((x) => x.id)) + 1 : 1;
+
+  // removed: copyAll JSON function — CSV-only import/export now
 
   return (
     <div className="flex flex-col gap-6 p-4">
@@ -221,107 +371,30 @@ const PackageFeatureAdmin: React.FC = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
+            onClick={() => fileInputRef.current?.click()}
+            className="btn-primary px-3 py-2 rounded text-sm"
+            title="Load CSV mapping"
+            aria-label="Load mappings from CSV"
+          >
+            Load CSV
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".csv,text/csv"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+            aria-hidden
+          />
+          <button
             onClick={exportCSV}
-            className="btn-ghost px-3 py-2 rounded"
-            title="Export CSV"
+            className="btn-ghost px-3 py-2 rounded text-sm"
+            title="Export CSV mapping"
+            aria-label="Export mappings to CSV"
           >
-            <svg
-              className="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 6h18"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 12h18"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 18h18"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            Export CSV
           </button>
-          <button
-            onClick={exportAll}
-            className="btn-primary px-3 py-2 rounded"
-            title="Download JSON"
-            style={{ color: "white" }}
-          >
-            <svg
-              className="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3v12"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8 11l4 4 4-4"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <rect
-                x="3"
-                y="17"
-                width="18"
-                height="4"
-                rx="1"
-                stroke="currentColor"
-                strokeWidth="1.2"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={copyAll}
-            className="btn-ghost px-3 py-2 rounded"
-            title="Copy JSON to clipboard"
-          >
-            <svg
-              className="icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="9"
-                y="9"
-                width="11"
-                height="11"
-                rx="2"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <rect
-                x="4"
-                y="4"
-                width="11"
-                height="11"
-                rx="2"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </button>
+          {/* CSV-only: Load / Export CSV buttons are shown above */}
         </div>
       </div>
       <div className="grid md:grid-cols-3 gap-6">

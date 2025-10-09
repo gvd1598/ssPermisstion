@@ -75,14 +75,7 @@ const PackageFeatureMapper: React.FC<PackageFeatureMapperProps> = ({
     [value, setInternalMap, onChange]
   );
 
-  // Derived JSON for display
-  const json = useMemo(() => {
-    const obj: Record<string, string[]> = {};
-    Object.entries(map).forEach(([pkgId, set]) => {
-      obj[pkgId] = Array.from(set);
-    });
-    return JSON.stringify(obj, null, 2);
-  }, [map]);
+  // mapping is available via `map` variable
 
   // Drag state
   const [draggingFeatureId, setDraggingFeatureId] = useState<string | null>(
@@ -153,26 +146,7 @@ const PackageFeatureMapper: React.FC<PackageFeatureMapperProps> = ({
     });
   };
 
-  const copyJson = async () => {
-    try {
-      await navigator.clipboard.writeText(json);
-      // Optionally show toast; for simplicity we'll alert
-      alert("Copied JSON to clipboard");
-    } catch (err) {
-      console.error(err);
-      alert("Copy failed");
-    }
-  };
-
-  const downloadJson = () => {
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "package-feature-map.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  // JSON export/copy removed — PackageFeatureAdmin handles CSV import/export
 
   return (
     <div className="flex flex-col gap-6 p-2">
@@ -241,7 +215,7 @@ const PackageFeatureMapper: React.FC<PackageFeatureMapperProps> = ({
                 key={p.id}
                 onDragOver={handlePackageDragOver()}
                 onDrop={handlePackageDrop(p.id)}
-                className={`border rounded-lg p-3 bg-white card flex flex-col gap-2 min-h-48 relative ${
+                className={`border rounded-lg p-3 bg-white card flex flex-col gap-2 min-h-48 relative max-h-[80vh] overflow-y-auto ${
                   String(p.id) === droppedPackageId
                     ? "ring-2 ring-[rgba(16,185,129,0.24)]"
                     : ""
@@ -290,7 +264,7 @@ const PackageFeatureMapper: React.FC<PackageFeatureMapperProps> = ({
                   </div>
                 </div>
                 <div
-                  className={`flex flex-col gap-2 rounded border border-dashed p-2 min-h-24 transition bg-white/60 ${
+                  className={`flex-1 flex flex-col gap-2 rounded border border-dashed p-2 transition bg-white/60 overflow-y-auto ${
                     draggingFeatureId
                       ? "border-[rgba(16,185,129,0.6)]"
                       : "border-[rgba(148,163,184,0.16)]"
@@ -350,34 +324,16 @@ const PackageFeatureMapper: React.FC<PackageFeatureMapperProps> = ({
           })}
         </div>
       </div>
-      {/* JSON Output */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <h2 className="font-medium">JSON Mapping</h2>
-            <button
-              onClick={copyJson}
-              className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
-            >
-              Copy
-            </button>
-            <button
-              onClick={downloadJson}
-              className="text-xs bg-gray-700 text-white px-2 py-1 rounded hover:bg-gray-800"
-            >
-              Download
-            </button>
-          </div>
-          <pre className="text-xs bg-gray-900 text-gray-100 p-3 rounded max-h-72 overflow-auto shadow-inner">
-            {json}
-          </pre>
-        </div>
+      <div className="grid md:grid-cols-1 gap-6">
         <div className="text-xs text-gray-600 space-y-2">
           <h2 className="font-medium">How to use</h2>
           <ol className="list-decimal ml-4 space-y-1">
             <li>ลาก (drag) ฟีเจอร์จากคอลัมน์ซ้ายไปยังแพ็คเกจที่ต้องการ</li>
             <li>กด Clear เพื่อล้างฟีเจอร์ของแพ็คเกจ</li>
-            <li>ปุ่ม Copy / Download เพื่อเอา JSON ไปใช้</li>
+            <li>
+              ใช้ปุ่ม Export CSV / Load CSV ในหน้า admin เพื่อนำเข้า-ส่งออก
+              mapping
+            </li>
             <li>คุณสามารถแก้ไขโค้ดเพื่อดึงข้อมูลจริงจาก API ได้</li>
           </ol>
         </div>
