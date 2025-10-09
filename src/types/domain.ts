@@ -60,3 +60,84 @@ export const createEmptyFeature = (nextId: number): FeatureEntity => ({
   updatedBy: "",
   isOpen: true,
 });
+
+// ===== Roles & Permission Actions (for role-feature-permission admin) =====
+export interface RoleEntity {
+  id: number;
+  name: string;
+  isSystem: boolean;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  active: boolean;
+  code?: string | null;
+  [key: string]: unknown;
+}
+
+export const createEmptyRole = (nextId: number): RoleEntity => ({
+  id: nextId,
+  name: "",
+  isSystem: false,
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  createdBy: "",
+  updatedBy: "",
+  active: true,
+  code: "",
+});
+
+export interface PermissionActionEntity {
+  id: number;
+  name: string;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  active: boolean;
+  [key: string]: unknown;
+}
+
+export const createEmptyPermissionAction = (
+  nextId: number
+): PermissionActionEntity => ({
+  id: nextId,
+  name: "",
+  code: "",
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  createdBy: "",
+  updatedBy: "",
+  active: true,
+});
+
+// ===== Menu (for Menu -> Role mapping) =====
+export interface MenuEntity {
+  id: number;
+  path: string;
+  name: string;
+  icon?: string | null;
+  group?: string | null;
+  type?: string | null; // MenuType as string for UI
+  active: boolean;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+  updatedBy: string;
+  [key: string]: unknown;
+}
+
+export const createEmptyMenu = (nextId: number): MenuEntity => ({
+  id: nextId,
+  path: "",
+  name: "",
+  icon: "",
+  group: "",
+  type: "PARENT",
+  active: true,
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  createdBy: "",
+  updatedBy: "",
+});
