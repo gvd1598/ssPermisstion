@@ -157,6 +157,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
     }
   });
   const [search, setSearch] = useState<string>("");
+  const [menuSearch, setMenuSearch] = useState<string>("");
   const [mapping, setMapping] = useState<RoleFeatureMenuActionMap>(() => {
     const ls = localStorage.getItem(LS_KEY);
     if (ls) {
@@ -204,6 +205,17 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
       (f) => f.name.toLowerCase().includes(s) || String(f.id).includes(s)
     );
   }, [search, features]);
+
+  const filteredMenus = useMemo(() => {
+    if (!menuSearch) return menus;
+    const s = menuSearch.toLowerCase();
+    return menus.filter(
+      (m) =>
+        (m.name && m.name.toLowerCase().includes(s)) ||
+        (m.path && m.path.toLowerCase().includes(s)) ||
+        String(m.id).includes(s)
+    );
+  }, [menuSearch, menus]);
 
   const cloneMapping = (
     m: RoleFeatureMenuActionMap
@@ -422,7 +434,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Left: draggable features + role/actions editors */}
         <div className="md:col-span-1 space-y-6 card p-4">
           <CrudList
@@ -455,61 +467,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
             ]}
             itemLabel={(m) => `${m.name} (${m.path})`}
           />
-          <div className="card p-3">
-            <h2 className="font-medium mb-2 text-sm text-slate-700">
-              Features
-            </h2>
-            <ul className="space-y-2 max-h-[60vh] overflow-auto pr-1">
-              {filteredFeatures.map((f) => {
-                const isDragging = draggingFeatureId === String(f.id);
-                return (
-                  <li
-                    key={f.id}
-                    draggable
-                    onDragStart={handleFeatureDragStart(f.id)}
-                    onDragEnd={handleFeatureDragEnd}
-                    className={`border rounded px-3 py-2 bg-white shadow-sm cursor-grab active:cursor-grabbing transition text-sm flex items-center gap-3 ${
-                      isDragging
-                        ? "opacity-60 border-[rgba(22,163,74,0.4)]"
-                        : "hover:border-[rgba(22,163,74,0.6)]"
-                    }`}
-                  >
-                    <div className="w-8 h-8 bg-green-100 text-green-700 rounded flex items-center justify-center text-sm font-semibold">
-                      {String(f.name).charAt(0).toUpperCase()}
-                    </div>
-                    <div className="flex-1">
-                      <span className="font-medium">{f.name}</span>
-                      {f.description && (
-                        <div className="text-xs text-gray-500 line-clamp-2">
-                          {f.description}
-                        </div>
-                      )}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            <h2 className="font-medium mb-2 mt-4 text-sm text-slate-700">
-              Menus (ลากไปปล่อยใน Feature)
-            </h2>
-            <ul className="space-y-2 max-h-[30vh] overflow-auto pr-1">
-              {menus.map((m) => {
-                return (
-                  <li
-                    key={m.id}
-                    draggable
-                    onDragStart={handleMenuDragStart(m.id)}
-                    onDragEnd={handleFeatureDragEnd}
-                    className={`border rounded px-3 py-2 bg-white shadow-sm cursor-grab active:cursor-grabbing transition text-sm flex items-center gap-3 hover:border-[rgba(22,163,74,0.6)]`}
-                  >
-                    <div className="flex-1 text-sm">
-                      {m.name || m.path || `menu-${m.id}`}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {/* Features list removed from left column - moved to right palette */}
         </div>
 
         <div className="md:col-span-2 card p-4">
@@ -718,6 +676,80 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+        {/* Right: Features (top) + Menus (below) palette */}
+        <div className="md:col-span-1">
+          <div className="card p-3 md:sticky md:top-4 self-start">
+            <h2 className="font-medium mb-2 text-sm text-slate-700">
+              Features
+            </h2>
+            <input
+              className="w-full border rounded px-2 py-1 text-sm mb-2"
+              placeholder="ค้นหา features..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <ul className="space-y-2 max-h-[34vh] overflow-auto pr-1 mb-3">
+              {filteredFeatures.map((f) => {
+                const isDragging = draggingFeatureId === String(f.id);
+                return (
+                  <li
+                    key={f.id}
+                    draggable
+                    onDragStart={handleFeatureDragStart(f.id)}
+                    onDragEnd={handleFeatureDragEnd}
+                    className={`border rounded px-3 py-2 bg-white shadow-sm cursor-grab active:cursor-grabbing transition text-sm flex items-center gap-3 ${
+                      isDragging
+                        ? "opacity-60 border-[rgba(22,163,74,0.4)]"
+                        : "hover:border-[rgba(22,163,74,0.6)]"
+                    }`}
+                  >
+                    <div className="w-8 h-8 bg-green-100 text-green-700 rounded flex items-center justify-center text-sm font-semibold">
+                      {String(f.name).charAt(0).toUpperCase()}
+                    </div>
+                    <div className="flex-1">
+                      <span className="font-medium">{f.name}</span>
+                      {f.description && (
+                        <div className="text-xs text-gray-500 line-clamp-2">
+                          {f.description}
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <h2 className="font-medium mb-2 text-sm text-slate-700">
+              Menus (ลากไปปล่อยใน Feature)
+            </h2>
+            <input
+              className="w-full border rounded px-2 py-1 text-sm mb-2"
+              placeholder="ค้นหาเมนู..."
+              value={menuSearch}
+              onChange={(e) => setMenuSearch(e.target.value)}
+            />
+            <ul className="space-y-2 max-h-[34vh] overflow-auto pr-1">
+              {filteredMenus.map((m) => (
+                <li
+                  key={m.id}
+                  draggable
+                  onDragStart={handleMenuDragStart(m.id)}
+                  onDragEnd={handleFeatureDragEnd}
+                  className={`border rounded px-3 py-2 bg-white shadow-sm cursor-grab active:cursor-grabbing transition text-sm flex items-center gap-3 hover:border-[rgba(22,163,74,0.6)]`}
+                >
+                  <div className="flex-1 text-sm">
+                    <div className="font-medium">
+                      {m.name || `menu-${m.id}`}
+                    </div>
+                    {m.path && (
+                      <div className="text-[11px] text-gray-500">{m.path}</div>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
