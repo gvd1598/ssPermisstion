@@ -596,5 +596,44 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ผู้ใช้งาน",
     "type": "CHILD"
+  },
+  {
+    "id": 58,
+    "path": "/withdrawal-product",
+    "name": "เบิกสินค้าข้ามสาขา",
+    "active": true,
+    "createdAt": "2025-10-08T09:39:35.663Z",
+    "updatedAt": "2025-10-08T09:39:35.663Z",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "icon": "solar:alt-arrow-right-linear",
+    "parentName": "สต๊อกสินค้า",
+    "type": "CHILD"
+  },
+  {
+    "id": 59,
+    "path": "/warehouse/list",
+    "name": "รายการคลัง",
+    "active": true,
+    "createdAt": "2025-10-08T09:39:35.663Z",
+    "updatedAt": "2025-10-08T09:39:35.663Z",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "icon": "solar:alt-arrow-right-linear",
+    "parentName": "สต๊อกสินค้า",
+    "type": "CHILD"
+  },
+  {
+    "id": 60,
+    "path": "/stock-scrap",
+    "name": "สต๊อกม้วนเศษ",
+    "active": true,
+    "createdAt": "2025-10-08T09:39:35.663Z",
+    "updatedAt": "2025-10-08T09:39:35.663Z",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "icon": "solar:alt-arrow-right-linear",
+    "parentName": "สต๊อกสินค้า",
+    "type": "CHILD"
   }
 ]
