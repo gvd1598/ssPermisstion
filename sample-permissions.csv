@@ -1,0 +1,8 @@
+role_id,role_name,feature_id,feature_name,menu_id,menu_name,permission_action_id,permission_action_name,permission_action_code,createdAt,updatedAt,createdBy,updatedBy
+1,Admin,1,Dashboard,1,Home,1,ดู,VIEW,1728000000000,1728000000000,system,system
+1,Admin,1,Dashboard,1,Home,2,สร้าง,CREATE,1728000000000,1728000000000,system,system
+1,Admin,1,Dashboard,1,Home,3,แก้ไข,EDIT,1728000000000,1728000000000,system,system
+1,Admin,2,User Management,2,Users,1,ดู,VIEW,1728000000000,1728000000000,system,system
+1,Admin,2,User Management,2,Users,2,สร้าง,CREATE,1728000000000,1728000000000,system,system
+1,Admin,2,User Management,2,Users,4,ลบ,DELETE,1728000000000,1728000000000,system,system
+2,User,1,Dashboard,1,Home,1,ดู,VIEW,1728000000000,1728000000000,system,system

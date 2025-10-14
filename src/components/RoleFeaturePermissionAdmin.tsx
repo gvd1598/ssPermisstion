@@ -358,6 +358,78 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
       });
     };
 
+  // import CSV
+  const importCSV = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const text = ev.target?.result as string;
+        const lines = text.split(/\r?\n/).filter((l) => l.trim());
+        if (lines.length < 2) {
+          alert("CSV file is empty or invalid");
+          return;
+        }
+
+        // Parse CSV (simple parser supporting quoted fields)
+        const parseLine = (line: string): string[] => {
+          const result: string[] = [];
+          let current = "";
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (inQuotes && line[i + 1] === '"') {
+                current += '"';
+                i++;
+              } else {
+                inQuotes = !inQuotes;
+              }
+            } else if (char === "," && !inQuotes) {
+              result.push(current);
+              current = "";
+            } else {
+              current += char;
+            }
+          }
+          result.push(current);
+          return result;
+        };
+
+        // Skip header row
+        lines.shift();
+        const newMapping: RoleFeatureMenuActionMap = {};
+
+        for (let i = 0; i < lines.length; i++) {
+          const cols = parseLine(lines[i]);
+          if (cols.length < 7) continue; // need at least role_id, feature_id, menu_id, permission_action_id
+
+          const roleId = cols[0]?.trim();
+          const featureId = cols[2]?.trim();
+          const menuId = cols[4]?.trim();
+          const permId = cols[6]?.trim();
+
+          if (!roleId || !featureId || !menuId || !permId) continue;
+
+          newMapping[roleId] ??= {};
+          newMapping[roleId][featureId] ??= {};
+          newMapping[roleId][featureId][menuId] ??= new Set();
+          newMapping[roleId][featureId][menuId].add(permId);
+        }
+
+        setMapping(newMapping);
+        alert(`CSV imported successfully! Loaded ${lines.length - 1} rows.`);
+      } catch (err) {
+        console.error("CSV import error:", err);
+        alert("Failed to import CSV. Please check the file format.");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ""; // reset input
+  };
+
   // export CSV: role_id,role_name,feature_id,feature_name,menu_id,menu_name,permission_action_id,permission_action_name,permission_action_code,createdAt,updatedAt,createdBy,updatedBy
   const exportCSV = () => {
     const rows: string[] = [];
@@ -424,6 +496,18 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+          <label
+            className="btn-ghost px-3 py-2 rounded text-sm cursor-pointer"
+            title="Import CSV"
+          >
+            <input
+              type="file"
+              accept=".csv"
+              onChange={importCSV}
+              style={{ display: "none" }}
+            />
+            Import CSV
+          </label>
           <button
             onClick={exportCSV}
             className="btn-ghost px-3 py-2 rounded text-sm"
