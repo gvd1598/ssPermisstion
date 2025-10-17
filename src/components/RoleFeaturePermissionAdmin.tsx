@@ -12,6 +12,7 @@ import type {
 } from "../types/domain";
 import featuresData from "../data/features.json";
 import menusData from "../data/menus.json";
+import permissionActionsData from "../data/permission-actions.json";
 import CrudList from "./CrudList";
 
 // Mapping shape (new): roleId -> featureId -> menuId -> Set(permissionActionId)
@@ -27,74 +28,9 @@ const defaultRoles: RoleEntity[] = [
   { ...createEmptyRole(2), id: 2, name: "User", isSystem: false },
 ];
 
-const defaultPermActions: PermissionActionEntity[] = [
-  {
-    ...createEmptyPermissionAction(1),
-    id: 1,
-    name: "ดู",
-    code: "VIEW",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-  {
-    ...createEmptyPermissionAction(2),
-    id: 2,
-    name: "สร้าง",
-    code: "CREATE",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-  {
-    ...createEmptyPermissionAction(3),
-    id: 3,
-    name: "แก้ไข",
-    code: "EDIT",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-  {
-    ...createEmptyPermissionAction(4),
-    id: 4,
-    name: "ลบ",
-    code: "DELETE",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-  {
-    ...createEmptyPermissionAction(5),
-    id: 5,
-    name: "EXPORT",
-    code: "EXPORT",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-  {
-    ...createEmptyPermissionAction(6),
-    id: 6,
-    name: "ยกเลิก",
-    code: "CANCEL",
-    createdAt: "2025-10-04T13:19:03+00:00",
-    updatedAt: "2025-10-04T13:18:59+00:00",
-    createdBy: "system",
-    updatedBy: "system",
-    active: true,
-  },
-];
+const defaultPermActions: PermissionActionEntity[] = (
+  permissionActionsData as PermissionActionEntity[]
+).map((p) => ({ ...p }));
 
 const defaultFeatures: FeatureEntity[] = (featuresData as FeatureEntity[]).map(
   (f) => ({ ...f })
