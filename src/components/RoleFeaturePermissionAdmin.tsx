@@ -153,6 +153,10 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
         );
     }, [menuSearch, menus]);
 
+    const roleGridColumns = `grid grid-cols-1 gap-4${
+        roles.length >= 2 ? " sm:grid-cols-2" : ""
+    }${roles.length >= 3 ? " lg:grid-cols-3" : ""}`;
+
     const cloneMapping = (
         m: RoleFeatureMenuActionMap
     ): RoleFeatureMenuActionMap => {
@@ -532,7 +536,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                 </div>
 
                 <div className="card p-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className={roleGridColumns}>
                         {roles.map((r) => {
                             const roleId = String(r.id);
                             const featureIds = Object.keys(mapping[roleId] ?? {});
@@ -541,7 +545,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                                     key={r.id}
                                     onDragOver={handleRoleDragOver()}
                                     onDrop={handleRoleDrop(r.id)}
-                                    className={`border rounded-lg p-12 bg-white card flex flex-col gap-2 min-h-48 relative max-h-[80vh] overflow-y-auto ${
+                                    className={`border rounded-lg p-3 bg-white card flex flex-col gap-2 min-h-48 relative max-h-[80vh] overflow-y-auto ${
                                         roleId === droppedRoleId
                                             ? "ring-2 ring-[rgba(16,185,129,0.24)]"
                                             : ""
