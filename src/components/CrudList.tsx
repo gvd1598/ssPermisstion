@@ -15,6 +15,13 @@ interface FieldConfig<T extends BaseItem> {
   className?: string;
 }
 
+interface SaveContext<T extends BaseItem> {
+  draft: T;
+  editingId: number;
+  items: T[];
+  nextItems: T[];
+}
+
 interface CrudListProps<T extends BaseItem> {
   title: string;
   items: T[];
@@ -22,6 +29,7 @@ interface CrudListProps<T extends BaseItem> {
   fields: FieldConfig<T>[];
   createItem: (nextId: number) => T;
   itemLabel?: (item: T) => string;
+  onBeforeSave?: (ctx: SaveContext<T>) => void;
 }
 
 function CrudList<T extends BaseItem>({
@@ -32,6 +40,7 @@ function CrudList<T extends BaseItem>({
   createItem,
   itemLabel = (i) =>
     (i as Record<string, unknown>).name?.toString() ?? String(i.id),
+  onBeforeSave,
 }: CrudListProps<T>) {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [draft, setDraft] = useState<Partial<T>>({});
@@ -51,14 +60,55 @@ function CrudList<T extends BaseItem>({
     setDraft({});
   };
   const save = () => {
+    const finalDraft = { ...(draft as T) };
+    const ensureNumberId = (value: unknown): value is number =>
+      typeof value === "number" && !Number.isNaN(value);
+
     if (editingId === -1) {
-      setItems([...items, draft as T]);
-    } else {
-      setItems(
-        items.map((i) =>
-          i.id === editingId ? { ...(draft as T), id: i.id } : i
+      if (!ensureNumberId(finalDraft.id)) {
+        finalDraft.id = nextId();
+      }
+      if (
+        items.some(
+          (existing) =>
+            ensureNumberId(finalDraft.id) && existing.id === finalDraft.id
         )
+      ) {
+        alert("ID already exists. Choose a different ID.");
+        return;
+      }
+      const nextItems = [...items, finalDraft];
+      onBeforeSave?.({
+        draft: finalDraft,
+        editingId,
+        items,
+        nextItems,
+      });
+      setItems(nextItems);
+    } else {
+      if (!ensureNumberId(finalDraft.id)) {
+        alert("ID must be a valid number.");
+        return;
+      }
+      if (
+        items.some(
+          (existing) =>
+            existing.id === finalDraft.id && existing.id !== editingId
+        )
+      ) {
+        alert("ID already exists. Choose a different ID.");
+        return;
+      }
+      const nextItems = items.map((i) =>
+        i.id === editingId ? finalDraft : i
       );
+      onBeforeSave?.({
+        draft: finalDraft,
+        editingId,
+        items,
+        nextItems,
+      });
+      setItems(nextItems);
     }
     cancel();
   };

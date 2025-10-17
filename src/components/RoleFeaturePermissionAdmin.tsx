@@ -169,6 +169,43 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
     return out;
   };
 
+  const handleRoleBeforeSave = ({
+    draft,
+    editingId,
+  }: {
+    draft: RoleEntity;
+    editingId: number;
+  }) => {
+    if (editingId === -1) return;
+    if (draft.id === editingId) return;
+    setMapping((prev) => {
+      const oldKey = String(editingId);
+      const newKey = String(draft.id);
+      if (oldKey === newKey) return prev;
+      const next = cloneMapping(prev);
+      const oldEntry = next[oldKey];
+      if (!oldEntry) {
+        next[newKey] ??= {};
+        return next;
+      }
+      const newEntry = next[newKey];
+      if (newEntry) {
+        Object.entries(oldEntry).forEach(([fid, byMenu]) => {
+          newEntry[fid] ??= {};
+          Object.entries(byMenu).forEach(([mid, set]) => {
+            const existing = newEntry[fid][mid] ?? new Set<string>();
+            set.forEach((val) => existing.add(val));
+            newEntry[fid][mid] = existing;
+          });
+        });
+      } else {
+        next[newKey] = oldEntry;
+      }
+      delete next[oldKey];
+      return next;
+    });
+  };
+
   const toggle = (
     roleId: number,
     featureId: number,
@@ -462,8 +499,12 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
             items={roles}
             setItems={setRoles}
             createItem={createEmptyRole}
-            fields={[{ name: "name", label: "Name", required: true }]}
-            itemLabel={(r) => r.name}
+            fields={[
+              { name: "id", label: "ID", required: true, type: "number" },
+              { name: "name", label: "Name", required: true },
+            ]}
+            itemLabel={(r) => `${r.id} - ${r.name}`}
+            onBeforeSave={handleRoleBeforeSave}
           />
           <CrudList
             title="Actions"
