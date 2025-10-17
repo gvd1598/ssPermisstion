@@ -541,7 +541,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                                     key={r.id}
                                     onDragOver={handleRoleDragOver()}
                                     onDrop={handleRoleDrop(r.id)}
-                                    className={`border rounded-lg p-3 bg-white card flex flex-col gap-2 min-h-48 relative max-h-[80vh] overflow-y-auto ${
+                                    className={`border rounded-lg p-12 bg-white card flex flex-col gap-2 min-h-48 relative max-h-[80vh] overflow-y-auto ${
                                         roleId === droppedRoleId
                                             ? "ring-2 ring-[rgba(16,185,129,0.24)]"
                                             : ""
