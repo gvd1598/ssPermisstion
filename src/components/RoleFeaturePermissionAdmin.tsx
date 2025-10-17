@@ -491,9 +491,9 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-[260px_minmax(0,1fr)_300px] lg:grid-cols-[300px_minmax(0,1fr)_340px] gap-6">
                 {/* Left: draggable features + role/actions editors */}
-                <div className="md:col-span-1 space-y-6 card p-4">
+                <div className="space-y-6 card p-4">
                     <CrudList
                         title="Roles"
                         items={roles}
@@ -531,7 +531,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                     {/* Features list removed from left column - moved to right palette */}
                 </div>
 
-                <div className="md:col-span-2 card p-4">
+                <div className="card p-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {roles.map((r) => {
                             const roleId = String(r.id);
@@ -740,7 +740,7 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                     </div>
                 </div>
                 {/* Right: Features (top) + Menus (below) palette */}
-                <div className="md:col-span-1">
+                <div>
                     <div className="card p-3 md:sticky md:top-4 self-start">
                         <h2 className="font-medium mb-2 text-sm text-slate-700">
                             Features
