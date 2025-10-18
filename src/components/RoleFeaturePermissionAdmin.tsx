@@ -376,19 +376,29 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                 };
 
                 // Skip header row
-                lines.shift();
+                const header = lines.shift();
+                console.log("CSV Header:", header);
                 const newMapping: RoleFeatureMenuActionMap = {};
 
                 for (let i = 0; i < lines.length; i++) {
                     const cols = parseLine(lines[i]);
-                    if (cols.length < 7) continue; // need at least role_id, feature_id, menu_id, permission_action_id
+                    console.log(`Row ${i}:`, cols);
+                    if (cols.length < 7) {
+                        console.warn(`Row ${i} has insufficient columns:`, cols.length);
+                        continue;
+                    }
 
                     const roleId = cols[0]?.trim();
                     const featureId = cols[2]?.trim();
                     const menuId = cols[4]?.trim();
                     const permId = cols[6]?.trim();
 
-                    if (!roleId || !featureId || !menuId || !permId) continue;
+                    console.log(`Parsed - Role: ${roleId}, Feature: ${featureId}, Menu: ${menuId}, Perm: ${permId}`);
+
+                    if (!roleId || !featureId || !menuId || !permId) {
+                        console.warn(`Row ${i} missing required fields`);
+                        continue;
+                    }
 
                     newMapping[roleId] ??= {};
                     newMapping[roleId][featureId] ??= {};
@@ -396,8 +406,9 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                     newMapping[roleId][featureId][menuId].add(permId);
                 }
 
+                console.log("Final mapping:", newMapping);
                 setMapping(newMapping);
-                alert(`CSV imported successfully! Loaded ${lines.length - 1} rows.`);
+                alert(`CSV imported successfully! Loaded ${lines.length} rows.`);
             } catch (err) {
                 console.error("CSV import error:", err);
                 alert("Failed to import CSV. Please check the file format.");
@@ -413,7 +424,6 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
         rows.push(
             "role_id,role_name,feature_id,feature_name,menu_id,menu_name,permission_action_id,permission_action_name,permission_action_code,createdAt,updatedAt,createdBy,updatedBy"
         );
-        const now = String(Date.now());
         const esc = (s: unknown) => `"${String(s ?? "").replace(/"/g, '""')}"`;
         Object.entries(mapping).forEach(([rid, byFeature]) => {
             const role = roles.find((r) => String(r.id) === rid);
@@ -435,8 +445,8 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                                 esc(pid),
                                 esc(pa?.name ?? ""),
                                 esc(pa?.code ?? ""),
-                                esc(now),
-                                esc(now),
+                                esc("NOW()"),
+                                esc("NOW()"),
                                 esc("system"),
                                 esc("system"),
                             ].join(",")

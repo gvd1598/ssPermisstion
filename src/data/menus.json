@@ -11,7 +11,9 @@
     "icon": "oui:function-add",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 0
+    "sortOrder": 0,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 16,
@@ -25,7 +27,9 @@
     "icon": "solar:tag-price-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 0
+    "sortOrder": 0,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 17,
@@ -39,7 +43,9 @@
     "icon": "hugeicons:factory",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 0
+    "sortOrder": 0,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 18,
@@ -53,7 +59,9 @@
     "icon": "lucide:store",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 0
+    "sortOrder": 0,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 34,
@@ -67,7 +75,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 203
+    "sortOrder": 203,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 22,
@@ -81,7 +91,9 @@
     "icon": "solar:users-group-rounded-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 500
+    "sortOrder": 500,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 33,
@@ -95,7 +107,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 202
+    "sortOrder": 202,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 23,
@@ -109,7 +123,9 @@
     "icon": "solar:user-check-linear",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 600
+    "sortOrder": 600,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 32,
@@ -123,7 +139,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 201
+    "sortOrder": 201,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 13,
@@ -137,7 +155,9 @@
     "icon": "ri:store-3-fill",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 0
+    "sortOrder": 0,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 12,
@@ -151,7 +171,9 @@
     "icon": "solar:pie-chart-2-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 100
+    "sortOrder": 100,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 20,
@@ -165,7 +187,9 @@
     "icon": "solar:bill-check-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 300
+    "sortOrder": 300,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 21,
@@ -179,7 +203,9 @@
     "icon": "solar:layers-minimalistic-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 400
+    "sortOrder": 400,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 24,
@@ -193,7 +219,9 @@
     "icon": "lucide:warehouse",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 700
+    "sortOrder": 700,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 25,
@@ -207,7 +235,9 @@
     "icon": "tabler:user-bitcoin",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 800
+    "sortOrder": 800,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 26,
@@ -221,7 +251,9 @@
     "icon": "solar:document-add-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 900
+    "sortOrder": 900,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 27,
@@ -235,7 +267,9 @@
     "icon": "tabler:user-dollar",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 1000
+    "sortOrder": 1000,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 28,
@@ -249,7 +283,9 @@
     "icon": "solar:box-minimalistic-linear",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 1100
+    "sortOrder": 1100,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 29,
@@ -263,7 +299,9 @@
     "icon": "solar:calendar-broken",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 1200
+    "sortOrder": 1200,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 30,
@@ -277,21 +315,9 @@
     "icon": "fluent:math-formula-sparkle-16-filled",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 1300
-  },
-  {
-    "id": 31,
-    "path": "#",
-    "name": "ผู้ใช้งาน",
-    "active": "t",
-    "createdAt": "8/10/2025 09:39:35.663443+00",
-    "updatedAt": "8/10/2025 09:39:35.663443+00",
-    "createdBy": "system",
-    "updatedBy": "system",
-    "icon": "solar:user-circle-outline",
-    "group": null,
-    "type": "PARENT",
-    "sortOrder": 1400
+    "sortOrder": 1300,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 19,
@@ -305,7 +331,25 @@
     "icon": "solar:bill-list-outline",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 200
+    "sortOrder": 200,
+    "isSubGroup": "f",
+    "subGroup": null
+  },
+  {
+    "id": 31,
+    "path": "/user/list",
+    "name": "ผู้ใช้งาน",
+    "active": "t",
+    "createdAt": "8/10/2025 09:39:35.663443+00",
+    "updatedAt": "8/10/2025 09:39:35.663443+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "icon": "solar:user-circle-outline",
+    "group": null,
+    "type": "PARENT",
+    "sortOrder": 1400,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 38,
@@ -319,7 +363,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สั่งซื้อ",
     "type": "CHILD",
-    "sortOrder": 301
+    "sortOrder": 301,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 36,
@@ -333,7 +379,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 205
+    "sortOrder": 205,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 35,
@@ -347,7 +395,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 204
+    "sortOrder": 204,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 37,
@@ -361,7 +411,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "บิล",
     "type": "CHILD",
-    "sortOrder": 206
+    "sortOrder": 206,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 39,
@@ -375,7 +427,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สั่งซื้อ",
     "type": "CHILD",
-    "sortOrder": 302
+    "sortOrder": 302,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 40,
@@ -389,7 +443,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 401
+    "sortOrder": 401,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 41,
@@ -403,7 +459,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 402
+    "sortOrder": 402,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 42,
@@ -417,7 +475,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 403
+    "sortOrder": 403,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 43,
@@ -431,7 +491,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 404
+    "sortOrder": 404,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 44,
@@ -445,7 +507,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 405
+    "sortOrder": 405,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 45,
@@ -459,7 +523,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 406
+    "sortOrder": 406,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 46,
@@ -473,7 +539,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 407
+    "sortOrder": 407,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 47,
@@ -487,7 +555,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 408
+    "sortOrder": 408,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 48,
@@ -501,7 +571,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลสินค้า",
     "type": "CHILD",
-    "sortOrder": 409
+    "sortOrder": 409,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 49,
@@ -515,7 +587,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ลูกหนี้",
     "type": "CHILD",
-    "sortOrder": 501
+    "sortOrder": 501,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 50,
@@ -529,7 +603,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ลูกหนี้",
     "type": "CHILD",
-    "sortOrder": 502
+    "sortOrder": 502,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 51,
@@ -543,7 +619,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลทั่วไป",
     "type": "CHILD",
-    "sortOrder": 1101
+    "sortOrder": 1101,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 52,
@@ -557,7 +635,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลทั่วไป",
     "type": "CHILD",
-    "sortOrder": 1102
+    "sortOrder": 1102,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 53,
@@ -571,7 +651,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลทั่วไป",
     "type": "CHILD",
-    "sortOrder": 1103
+    "sortOrder": 1103,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 54,
@@ -585,7 +667,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลทั่วไป",
     "type": "CHILD",
-    "sortOrder": 1104
+    "sortOrder": 1104,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 55,
@@ -599,7 +683,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "ข้อมูลทั่วไป",
     "type": "CHILD",
-    "sortOrder": 1105
+    "sortOrder": 1105,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 14,
@@ -613,35 +699,9 @@
     "icon": "hugeicons:news",
     "group": null,
     "type": "PARENT",
-    "sortOrder": 1500
-  },
-  {
-    "id": 56,
-    "path": "/user/list",
-    "name": "รายชื่อผู้ใช้งาน",
-    "active": "t",
-    "createdAt": "8/10/2025 09:39:35.663443+00",
-    "updatedAt": "8/10/2025 09:39:35.663443+00",
-    "createdBy": "system",
-    "updatedBy": "system",
-    "icon": "solar:alt-arrow-right-linear",
-    "group": "ผู้ใช้งาน",
-    "type": "CHILD",
-    "sortOrder": 1401
-  },
-  {
-    "id": 57,
-    "path": "/user/create",
-    "name": "สร้างผู้ใช้งานใหม่",
-    "active": "t",
-    "createdAt": "8/10/2025 09:39:35.663443+00",
-    "updatedAt": "8/10/2025 09:39:35.663443+00",
-    "createdBy": "system",
-    "updatedBy": "system",
-    "icon": "solar:alt-arrow-right-linear",
-    "group": "ผู้ใช้งาน",
-    "type": "CHILD",
-    "sortOrder": 1402
+    "sortOrder": 1500,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 58,
@@ -655,7 +715,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สต๊อกสินค้า",
     "type": "CHILD",
-    "sortOrder": 701
+    "sortOrder": 701,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 59,
@@ -669,7 +731,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สต๊อกสินค้า",
     "type": "CHILD",
-    "sortOrder": 702
+    "sortOrder": 702,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 61,
@@ -683,7 +747,9 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สต๊อกสินค้า",
     "type": "CHILD",
-    "sortOrder": 703
+    "sortOrder": 703,
+    "isSubGroup": "f",
+    "subGroup": null
   },
   {
     "id": 60,
@@ -697,6 +763,392 @@
     "icon": "solar:alt-arrow-right-linear",
     "group": "สต๊อกสินค้า",
     "type": "CHILD",
-    "sortOrder": 704
+    "sortOrder": 704,
+    "isSubGroup": "f",
+    "subGroup": null
+  },
+  {
+    "id": 62,
+    "path": "/report-finance",
+    "name": "รายงานสรุปการเงิน",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 63,
+    "path": "/report-income-expense",
+    "name": "รายงานรายได้-ค่ายใช้จ่ายเพิ่มเติม",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 64,
+    "path": "/report-income",
+    "name": "รายงานรายได้",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 65,
+    "path": "/reports/expense-report",
+    "name": "รายงานค่าใช้จ่าย",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 66,
+    "path": "/report-profit",
+    "name": "รายงานกำไรขาดทุน",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 67,
+    "path": "/reports/receipt-payments",
+    "name": "รายงานการชำระบิล",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 68,
+    "path": "/reports/deposit-payments",
+    "name": "รายงานการชำระมัดจำ",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 69,
+    "path": "/accounts-receivable",
+    "name": "รายงานบัญชีลูกหนี้",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-wallet",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การเงินและบัญชี"
+  },
+  {
+    "id": 70,
+    "path": "/report-sell-daily",
+    "name": "รายงานสรุปยอดขายประจำวัน",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-chart-line",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การขาย"
+  },
+  {
+    "id": 71,
+    "path": "/reports/customer-sales-summary",
+    "name": "รายงานสรุปยอดขายลูกค้า",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-chart-line",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การขาย"
+  },
+  {
+    "id": 72,
+    "path": "/reports/commission",
+    "name": "รายงานการจ่ายคอมมิชชั่น",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-chart-line",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "การขาย"
+  },
+  {
+    "id": 73,
+    "path": "/reports/goods-movement",
+    "name": "รายงานความเคลื่อนไหวสินค้า",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 74,
+    "path": "/reports/coil-movement",
+    "name": "รายงานความเคลื่อนไหวคอยล์",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 75,
+    "path": "/reports/meterial-movement",
+    "name": "รายงานความเคลื่อนไหววัตถุดิบ",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 76,
+    "path": "/reports/steel-movement",
+    "name": "รายงานความเคลื่อนไหวเหล็ก",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 77,
+    "path": "/reports/pe-movement",
+    "name": "รายงานความเคลื่อนไหว PE",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 78,
+    "path": "/reports/foil-movement",
+    "name": "รายงานความเคลื่อนไหวฟอยล์",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 79,
+    "path": "/reports/stock-balance",
+    "name": "รายงานสินค้าคงเหลือ",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 80,
+    "path": "/reports/manufacturing",
+    "name": "รายงานการผลิตสินค้า",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-box",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "สต็อกและคลัง"
+  },
+  {
+    "id": 81,
+    "path": "/reports/buy-tax",
+    "name": "รายงานภาษีซื้อ",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-percentage",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "ภาษี"
+  },
+  {
+    "id": 82,
+    "path": "/reports/sales-tax",
+    "name": "รายงานภาษีขาย",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-percentage",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "ภาษี"
+  },
+  {
+    "id": 83,
+    "path": "/reports/product-vat",
+    "name": "รายงานภาษีสินค้า",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-percentage",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "ภาษี"
+  },
+  {
+    "id": 84,
+    "path": "/reports/withholding-tax",
+    "name": "รายงานภาษีถูกหัก ณ ที่จ่าย",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-percentage",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "ภาษี"
+  },
+  {
+    "id": 85,
+    "path": "/reports/withholding-tax-expense",
+    "name": "รายงานภาษีหัก ณ ที่จ่าย",
+    "active": "t",
+    "createdAt": "18/10/2025 05:58:19.663167+00",
+    "updatedAt": "18/10/2025 05:58:19.663167+00",
+    "createdBy": "",
+    "updatedBy": "",
+    "icon": "pi-percentage",
+    "group": "รายงาน",
+    "type": "PARENT",
+    "sortOrder": 0,
+    "isSubGroup": "t",
+    "subGroup": "ภาษี"
   }
 ]
