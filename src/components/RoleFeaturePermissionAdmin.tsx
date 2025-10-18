@@ -399,10 +399,10 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                         continue;
                     }
 
-                    const roleId = cols[0?.trim()];
-                    const featureId = cols[2?.trim()];
-                    const menuId = cols[4?.trim()];
-                    const permId = cols[6?.trim()];
+                    const roleId = cols[0]?.trim();
+                    const featureId = cols[2]?.trim();
+                    const menuId = cols[4]?.trim();
+                    const permId = cols[6]?.trim();
 
                     console.log(`Parsed - Role: ${roleId}, Feature: ${featureId}, Menu: ${menuId}, Perm: ${permId}`);
 
