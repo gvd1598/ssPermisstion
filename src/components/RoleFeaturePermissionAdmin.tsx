@@ -330,7 +330,18 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                     const fid = String(featureId);
                     next[rid] ??= {};
                     next[rid][fid] ??= {};
-                    next[rid][fid][String(menuId)] ??= new Set();
+
+                    // Create new Set with default permissions if menu doesn't exist yet
+                    if (!next[rid][fid][String(menuId)]) {
+                        const defaultPerms = new Set<string>();
+                        perms.forEach((p) => {
+                            if (p.default) {
+                                defaultPerms.add(String(p.id));
+                            }
+                        });
+                        next[rid][fid][String(menuId)] = defaultPerms;
+                    }
+
                     return next;
                 });
             };
@@ -388,10 +399,10 @@ const RoleFeaturePermissionAdmin: React.FC = () => {
                         continue;
                     }
 
-                    const roleId = cols[0]?.trim();
-                    const featureId = cols[2]?.trim();
-                    const menuId = cols[4]?.trim();
-                    const permId = cols[6]?.trim();
+                    const roleId = cols[0?.trim()];
+                    const featureId = cols[2?.trim()];
+                    const menuId = cols[4?.trim()];
+                    const permId = cols[6?.trim()];
 
                     console.log(`Parsed - Role: ${roleId}, Feature: ${featureId}, Menu: ${menuId}, Perm: ${permId}`);
 
