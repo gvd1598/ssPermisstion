@@ -224,6 +224,22 @@
     "subGroup": null
   },
   {
+    "id": 95,
+    "path": "/stock-adjustment/list",
+    "name": "รายการปรับปรุงสต๊อก",
+    "icon": null,
+    "group": "สต๊อกสินค้า",
+    "subGroup": null,
+    "isSubGroup": true,
+    "type": "CHILD",
+    "active": true,
+    "createdAt": "2025-10-27T19:26:53+00:00",
+    "updatedAt": "2025-10-27T19:27:05+00:00",
+    "createdBy": null,
+    "updatedBy": null,
+    "sortOrder": 705
+  },
+  {
     "id": 25,
     "path": "/commission/list",
     "name": "ค่าคอมฯ",
