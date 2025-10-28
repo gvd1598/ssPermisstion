@@ -8,7 +8,7 @@
     "createdBy": "system",
     "updatedBy": "system",
     "active": true,
-    "default": true
+    "default": false
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "createdBy": "system",
     "updatedBy": "system",
     "active": true,
-    "default": true
+    "default": false
   },
   {
     "id": 3,
@@ -30,7 +30,7 @@
     "createdBy": "system",
     "updatedBy": "system",
     "active": true,
-    "default": true
+    "default": false
   },
   {
     "id": 4,
@@ -41,7 +41,7 @@
     "createdBy": "system",
     "updatedBy": "system",
     "active": true,
-    "default": true
+    "default": false
   },
   {
     "id": 6,
@@ -52,7 +52,7 @@
     "createdBy": "system",
     "updatedBy": "system",
     "active": true,
-    "default": true
+    "default": false
   },
   {
     "id": 7,
@@ -62,6 +62,7 @@
     "updatedAt": "2025-10-28T09:52:11+00:00",
     "createdBy": "system",
     "updatedBy": "system",
-    "active": true
+    "active": true,
+    "default": true
   }
 ]
