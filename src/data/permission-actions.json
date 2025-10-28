@@ -1,5 +1,60 @@
 [
   {
+    "id": 1,
+    "name": "ดู",
+    "code": "VIEW",
+    "createdAt": "4/10/2025 13:19:03+00",
+    "updatedAt": "4/10/2025 13:18:59+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "active": true,
+    "default": true
+  },
+  {
+    "id": 2,
+    "name": "สร้าง",
+    "code": "CREATE",
+    "createdAt": "4/10/2025 13:19:03+00",
+    "updatedAt": "4/10/2025 13:18:59+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "active": true,
+    "default": true
+  },
+  {
+    "id": 3,
+    "name": "แก้ไข",
+    "code": "EDIT",
+    "createdAt": "4/10/2025 13:19:03+00",
+    "updatedAt": "4/10/2025 13:18:59+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "active": true,
+    "default": true
+  },
+  {
+    "id": 4,
+    "name": "ลบ",
+    "code": "DELETE",
+    "createdAt": "4/10/2025 13:19:03+00",
+    "updatedAt": "4/10/2025 13:18:59+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "active": true,
+    "default": true
+  },
+  {
+    "id": 6,
+    "name": "ยกเลิก",
+    "code": "CANCEL",
+    "createdAt": "4/10/2025 13:19:03+00",
+    "updatedAt": "4/10/2025 13:18:59+00",
+    "createdBy": "system",
+    "updatedBy": "system",
+    "active": true,
+    "default": true
+  },
+  {
     "id": 7,
     "name": "แสดงราคาสินค้า",
     "code": "SHOW_COST",
